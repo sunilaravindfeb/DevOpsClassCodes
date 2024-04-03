@@ -7,12 +7,20 @@ pipeline{
                  echo 'github url checkout'
             }
         }
+
         stage('codecompile with akshat'){
             steps{
                 echo 'starting compiling'
                 sh 'mvn compile'
             }
         }
+        stage('parllel stages'){
+            parllel{
+                stage('codetesting with akshat'){
+                    steps{
+                       sh 'mvn test'
+                  }
+             }
         stage('codetesting with akshat'){
             steps{
                 sh 'mvn test'
