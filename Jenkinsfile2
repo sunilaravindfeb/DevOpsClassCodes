@@ -15,15 +15,10 @@ pipeline{
             }
         }
         stage('parllel stages'){
-            parllel{
+            parallel{
                 stage('codetesting with akshat'){
                     steps{
                        sh 'mvn test'
-                  }
-             }
-        stage('codetesting with akshat'){
-            steps{
-                sh 'mvn test'
             }
         }
         stage('qa with akshat'){
@@ -31,6 +26,8 @@ pipeline{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
+    }
+}
         stage('package with akshat'){
             when { anyOf { branch 'master'; branch 'main'} }
             steps{
